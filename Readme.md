@@ -3,8 +3,9 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Building the Application](#building-the-application)
 - [Terms of Use](#terms-of-use)
-- [Problems?](#problems)
+- [Known Problems](#known-problems)
 - [Changelog](#changelog)
 
 ## Introduction
@@ -12,11 +13,28 @@
 This application is an example 16 bit Windows application written in C. It
 accompanies the
 [Building Win16 GUI Applications in C](http://www.transmissionzero.co.uk/computing/win16-apps-in-c/)
-article on [Transmission Zero](http://www.transmissionzero.co.uk/). The
-application runs under Windows 1 to Windows 3.11, and all versions of Windows NT
-which support Win16 apps (Windows NT 3.1 to at least the x86 version of Windows
-8.1). It does not run under Windows 9x (Windows 95 to Windows ME). The reason
-for this is not known at the moment.
+article on [Transmission Zero](http://www.transmissionzero.co.uk/).
+
+The application is a little anarchronistic, since it makes use of functionality
+which didn't exist in Windows 1. An example is overlapped windows, which didn't
+exist until Windows 2 (Windows 1 only supported tiled windows). That doesn't
+magically make the functionality work on Windows 1, but means it works on the
+supported version of Windows and falls back gracefully on the unsupported one.
+This has been achieved by defining constants and structures in the header files
+of this project, which match the definitions of later Windows SDKs. This works
+because Windows API changes are designed to be backwards compatible, so older
+versions of Windows just ignore window styles it doesn't understand, and message
+handlers in the application will never receive messages which aren't defined on
+that version of Windows.
+
+The application runs under Windows 1 to Windows 3.11, and all versions of
+Windows NT which support Win16 apps (Windows NT 3.1 to at least the x86 version
+of Windows 10). It does not run under Windows 9x (Windows 95 to Windows ME). I
+think the reason is that Windows 9x just doesn't have support for Windows 1 and
+2 applications, whereas Windows NT does because the Win16 subsystem is based on
+Windows 3.1.
+
+## Building the Application
 
 To build the application with Microsoft C, open a command prompt, change to the
 directory containing the Makefile, and run "make Win1App". Note that you will
@@ -30,7 +48,13 @@ available tools you can use to build it.
 
 Refer to "License.txt" for terms of use.
 
-## Problems?
+## Known Problems
+
+The icon does not display correctly in versions of Windows after 3.x. Icons in
+Windows 1 and 2 are a different file format from the ".ico" file format, and I
+think they either aren't supported in later versions or there is a bug which
+means they aren't rendered correctly. Either way, it happens to all Windows 1
+and 2 applications, so it's not a problem with the supplied icon file.
 
 If you have any problems or questions, please ensure you have read this readme
 file and the
@@ -40,8 +64,14 @@ article. If you are still having trouble, you can
 
 ## Changelog
 
+2. 2016-08-28: Version 1.1
+  - Corrected name in module definition file. This was causing an odd issue
+    where launching the Windows 3.x version of the application while the Windows
+    1 application was running, resulted in a second instance of the Windows 1
+    application!
+
 1. 2014-11-09: Version 1.0
   - First release.
 
 Transmission Zero
-2016-08-27
+2016-08-28

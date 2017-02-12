@@ -45,7 +45,7 @@ LONG lParam;
     case WM_GETMINMAXINFO:
     {
       /* Prevent our window from being sized too small */
-      MINMAXINFO *minMax = (MINMAXINFO*) lParam;
+      MINMAXINFO FAR* minMax = (MINMAXINFO FAR*) lParam;
       minMax->ptMinTrackSize.x = 220;
       minMax->ptMinTrackSize.y = 110;
 
@@ -98,7 +98,7 @@ BOOL RegisterMainWindowClass()
   wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
   wc.hbrBackground = (HBRUSH) (COLOR_BTNFACE + 1);
   wc.lpszMenuName  = MAKEINTRESOURCE(IDR_MAINMENU);
-  wc.lpszClassName = MainWndClass;        
+  wc.lpszClassName = MainWndClass;
 
   return (RegisterClass(&wc)) ? TRUE : FALSE;
 }

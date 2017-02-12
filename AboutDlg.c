@@ -13,9 +13,9 @@ LONG lParam;
   switch (uMsg)
   {
     case WM_COMMAND:
-    {        
+    {
       WORD id = wParam;
-    
+
       switch (id)
       {
         case IDOK:
@@ -38,12 +38,12 @@ LONG lParam;
 /* Show our "about" dialog */
 void ShowAboutDialog(owner)
 HWND owner;
-{                  
+{
   /* Create dialog callback thunk */
-  FARPROC aboutProc = MakeProcInstance(AboutDialogProc, g_hInstance);       
-  
-  DialogBox(g_hInstance, MAKEINTRESOURCE(IDD_ABOUTDIALOG), owner, aboutProc);  
-  
+  FARPROC aboutProc = MakeProcInstance(AboutDialogProc, g_hInstance);
+
+  DialogBox(g_hInstance, MAKEINTRESOURCE(IDD_ABOUTDIALOG), owner, aboutProc);
+
   /* Free dialog callback thunk */
-  FreeProcInstance(aboutProc);  
+  FreeProcInstance(aboutProc);
 }

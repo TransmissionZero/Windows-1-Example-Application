@@ -11,7 +11,7 @@ int PASCAL WinMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow)
 HANDLE hInstance, hPrevInstance;
 LPSTR lpCmdLine;
 int nCmdShow;
-{      
+{
   HWND hWnd;
   HANDLE hAccelerators;
   MSG msg;
@@ -19,14 +19,14 @@ int nCmdShow;
   /* Assign global HINSTANCE */
   g_hInstance = hInstance;
 
-  /* Register our main window class */   
+  /* Register our main window class */
   if (! hPrevInstance)
   {
     if (! RegisterMainWindowClass())
     {
       MessageBox(NULL, "Error registering main window class.", "Error", MB_ICONHAND | MB_OK);
       return 0;
-    }    
+    }
   }
 
   /* Create our main window */
@@ -34,8 +34,8 @@ int nCmdShow;
   {
     MessageBox(NULL, "Error creating main window.", "Error", MB_ICONHAND | MB_OK);
     return 0;
-  } 
-    
+  }
+
   /* Load accelerators */
   hAccelerators = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDR_ACCELERATOR));
 

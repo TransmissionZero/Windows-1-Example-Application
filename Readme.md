@@ -15,7 +15,7 @@ accompanies the
 [Building Win16 GUI Applications in C](http://www.transmissionzero.co.uk/computing/win16-apps-in-c/)
 article on [Transmission Zero](http://www.transmissionzero.co.uk/).
 
-The application is a little anarchronistic, since it makes use of functionality
+The application is a little anachronistic, since it makes use of functionality
 which didn't exist in Windows 1. An example is overlapped windows, which didn't
 exist until Windows 2 (Windows 1 only supported tiled windows). That doesn't
 magically make the functionality work on Windows 1, but means it works on the
@@ -36,13 +36,17 @@ Windows 3.1.
 
 ## Building the Application
 
-To build the application with Microsoft C, open a command prompt, change to the
-directory containing the Makefile, and run "make Win1App". Note that you will
-need a very old version of the C compiler and Windows SDK to build the
-application. I built it with Microsoft C 4 (not to be confused with Visual C++
-4), but I believe it will compile with Microsoft C 5 as well. It cannot be built
-with newer tools, e.g. Visual C++ 1.52, and I'm not aware of any freely
-available tools you can use to build it.
+To build the application you will either need Microsoft C 4 with a Windows 1 SDK
+or Microsoft C 5 with a Windows 2 SDK. To perform the build, open a command
+prompt (with the relevant environment variables set that Microsoft C needs),
+change to the directory containing the Makefile, and run "make Win1App".
+
+Note that Microsoft C should not be confused with Visual C++, as Visual C++ 4.0
+arrived on the scene nearly 10 years after Visual C 4.0. Even Visual C++ 1.0 is
+too new to build Windows 1 and 2 applications with.
+
+I'm not aware of any freely available tools you can use to build the
+application.
 
 ## Terms of Use
 

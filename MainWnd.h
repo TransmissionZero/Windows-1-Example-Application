@@ -12,17 +12,17 @@ HWND CreateMainWindow();
 
 /* Minimum and maximum window sizing */
 #ifndef WM_GETMINMAXINFO
-  #define WM_GETMINMAXINFO    0x0024
-
-  typedef struct tagMINMAXINFO
-  {
-    POINT ptReserved;
-    POINT ptMaxSize;
-    POINT ptMaxPosition;
-    POINT ptMinTrackSize;
-    POINT ptMaxTrackSize;
-  } MINMAXINFO;
+  #define WM_GETMINMAXINFO 0x0024
 #endif
+
+typedef struct tagMINMAXINFO
+{
+  POINT ptReserved;
+  POINT ptMaxSize;
+  POINT ptMaxPosition;
+  POINT ptMinTrackSize;
+  POINT ptMaxTrackSize;
+} MINMAXINFO;
 
 /* Button colour */
 #ifndef COLOR_BTNFACE

@@ -1,7 +1,7 @@
 # This Makefile will build the Win1 Example application
 
 CC = cl
-CFLAGS = /c /D NDEBUG /G2swf /Os /W2 /Zp /FPi87
+CFLAGS = /c /D NDEBUG /AS /G0swf /Os /W2 /Zp /Fpi
 LINK = link4
 RC = rc
 MAPSYM = mapsym

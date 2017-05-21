@@ -5,10 +5,10 @@
 LONG FAR PASCAL MainWndProc(HWND, unsigned, WORD, LONG);
 
 /* Register a class for our main window */
-BOOL RegisterMainWindowClass();
+BOOL RegisterMainWindowClass(void);
 
 /* Create an instance of our main window */
-HWND CreateMainWindow();
+HWND CreateMainWindow(void);
 
 /* Minimum and maximum window sizing */
 #ifndef WM_GETMINMAXINFO

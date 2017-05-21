@@ -10,7 +10,7 @@
 
 ## Introduction
 
-This application is an example 16 bit Windows application written in C. It
+This application is an example Windows 1 application written in C. It
 accompanies the
 [Building Win16 GUI Applications in C](http://www.transmissionzero.co.uk/computing/win16-apps-in-c/)
 article on [Transmission Zero](http://www.transmissionzero.co.uk/).
@@ -36,10 +36,28 @@ Windows 3.1.
 
 ## Building the Application
 
-To build the application you will either need Microsoft C 4 with a Windows 1 SDK
-or Microsoft C 5 with a Windows 2 SDK. To perform the build, open a command
-prompt (with the relevant environment variables set that Microsoft C needs),
-change to the directory containing the Makefile, and run "make Win1App".
+To build the application you will need Microsoft C 4 and a Windows 1 SDK.
+Microsoft C 4 also works with a Windows 2 SDK, and although the executables it
+produces target Windows 2, they seem to run fine on Windows 1. You can also
+build the application with Microsoft C 5 and a Windows 2 SDK. Other combinations
+of Microsoft C and Windows SDK either won't work at all, or will work with some
+modifications but produces an executable which only works on Windows 3.x and
+later.
+
+To perform the build with Microsoft C 4, open a command prompt (with the
+relevant environment variables set that Microsoft C needs), change to the
+directory containing the Makefile, and run "make Win1App".
+
+If you are using Microsoft C 5, the build depends on how you configured the
+Windows 2 SDK. If you configured it to replace the standard C libraries with the
+special Windows combined libraries, the build is the same as the Microsoft C 4
+build. If not, you will first need to change the linker command line as follows:
+
+```$(LINK) /NOD [obj files],$(EXE) /align:16,/map,slibw.lib slibcew.lib,Win1App.def```
+
+The `/NOD` tells the linker not to link the default libraries (e.g.
+`slibce.lib`), and the addition of `slibcew.lib` causes it to link against this
+special Windows version instead.
 
 Note that Microsoft C should not be confused with Visual C++, as Visual C++ 4.0
 arrived on the scene nearly 10 years after Visual C 4.0. Even Visual C++ 1.0 is
@@ -68,6 +86,13 @@ article. If you are still having trouble, you can
 
 ## Changelog
 
+3. 2017-05-21: Version 1.2
+  - Removed unnecessary whitespace from source files.
+  - Corrected min / max window size handling, which should have been using a far
+    pointer for the MINMAXINFO struct.
+  - Makefile enhancements and support for Microsoft C 5.
+  - Target 8086 instead of 80286, and use emulation if x87 isn't available.
+
 2. 2016-08-28: Version 1.1
   - Corrected name in module definition file. This was causing an odd issue
     where launching the Windows 3.x version of the application while the Windows
@@ -78,4 +103,4 @@ article. If you are still having trouble, you can
   - First release.
 
 Transmission Zero
-2016-08-28
+2017-05-21

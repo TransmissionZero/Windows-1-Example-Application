@@ -1,7 +1,7 @@
 #include <windows.h>
-#include "aboutdlg.h"
-#include "resource.h"
-#include "globals.h"
+#include "AboutDlg.h"
+#include "Globals.h"
+#include "Resource.h"
 
 /* Dialog procedure for our "about" dialog */
 BOOL FAR PASCAL AboutDialogProc(hwndDlg, uMsg, wParam, lParam)
@@ -29,7 +29,9 @@ LONG lParam;
     }
 
     case WM_INITDIALOG:
+    {
       return TRUE;
+    }
   }
 
   return FALSE;

@@ -1,7 +1,7 @@
 #include <windows.h>
-#include "mainwnd.h"
-#include "resource.h"
-#include "globals.h"
+#include "Globals.h"
+#include "MainWnd.h"
+#include "Resource.h"
 
 /* Global instance handle */
 HANDLE g_hInstance = NULL;
@@ -19,18 +19,15 @@ int nCmdShow;
   /* Assign global HINSTANCE */
   g_hInstance = hInstance;
 
-  /* Register our main window class */
-  if (! hPrevInstance)
+  /* Register our main window class, or error */
+  if (!hPrevInstance && !RegisterMainWindowClass())
   {
-    if (! RegisterMainWindowClass())
-    {
-      MessageBox(NULL, "Error registering main window class.", "Error", MB_ICONHAND | MB_OK);
-      return 0;
-    }
+    MessageBox(NULL, "Error registering main window class.", "Error", MB_ICONHAND | MB_OK);
+    return 0;
   }
 
-  /* Create our main window */
-  if (! (hWnd = CreateMainWindow()))
+  /* Create our main window, or error */
+  if (!(hWnd = CreateMainWindow()))
   {
     MessageBox(NULL, "Error creating main window.", "Error", MB_ICONHAND | MB_OK);
     return 0;
@@ -44,14 +41,14 @@ int nCmdShow;
   UpdateWindow(hWnd);
 
   /* Main message loop */
-  while(GetMessage(&msg, NULL, 0, 0) > 0)
+  while (GetMessage(&msg, NULL, 0, 0) > 0)
   {
-    if (! TranslateAccelerator(msg.hwnd, hAccelerators, &msg))
+    if (!TranslateAccelerator(hWnd, hAccelerators, &msg))
     {
       TranslateMessage(&msg);
       DispatchMessage(&msg);
     }
   }
 
-  return (int) msg.wParam;
+  return (int)msg.wParam;
 }

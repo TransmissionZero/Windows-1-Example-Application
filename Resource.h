@@ -12,8 +12,4 @@
   #define IDC_STATIC                    -1
 #endif
 
-#ifndef DS_MODALFRAME
-  #define DS_MODALFRAME                 0x80L
-#endif
-
 #endif

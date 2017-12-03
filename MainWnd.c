@@ -37,16 +37,6 @@ LONG lParam;
       break;
     }
 
-    case WM_GETMINMAXINFO:
-    {
-      /* Prevent our window from being sized too small */
-      MINMAXINFO FAR* minMax = (MINMAXINFO FAR*)lParam;
-      minMax->ptMinTrackSize.x = 220;
-      minMax->ptMinTrackSize.y = 110;
-
-      return 0;
-    }
-
     /* Item from system menu has been invoked */
     case WM_SYSCOMMAND:
     {
@@ -87,7 +77,7 @@ BOOL RegisterMainWindowClass()
   wc.hInstance     = g_hInstance;
   wc.hIcon         = LoadIcon(g_hInstance, MAKEINTRESOURCE(IDI_APPICON));
   wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
-  wc.hbrBackground = (HBRUSH)(COLOR_BTNFACE + 1);
+  wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
   wc.lpszMenuName  = MAKEINTRESOURCE(IDR_MAINMENU);
   wc.lpszClassName = MainWndClass;
 
@@ -98,8 +88,7 @@ BOOL RegisterMainWindowClass()
 HWND CreateMainWindow()
 {
   /* Create instance of main window */
-  HWND hWnd = CreateWindow(MainWndClass, MainWndClass, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 320, 200,
-                           NULL, NULL, g_hInstance, NULL);
+  HWND hWnd = CreateWindow(MainWndClass, MainWndClass, WS_TILEDWINDOW, 0, 0, 320, 200, NULL, NULL, g_hInstance, NULL);
 
   if (hWnd)
   {

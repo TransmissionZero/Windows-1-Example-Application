@@ -1,12 +1,12 @@
 # This Makefile will build the Win1 Example application
 
-CC = cl
-CFLAGS = /c /D NDEBUG /AS /G0swf /Os /W2 /Zp /Fpi
-LINK = link4
-RC = rc
-MAPSYM = mapsym
-MARK = mark
-EXE = Win1App.exe
+CC=cl
+CFLAGS=/c /D LINT_ARGS /D NDEBUG /AS /G0swf /Os /W2 /Zpe /FPi
+LINK=link4
+RC=rc
+MAPSYM=mapsym
+MARK=mark
+EXE=Win1App.exe
 
 .c.obj:
     $(CC) $(CFLAGS) $*.c

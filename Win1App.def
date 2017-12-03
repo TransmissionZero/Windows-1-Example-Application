@@ -1,4 +1,4 @@
-NAME           Win1App
+NAME           WIN1APP
 DESCRIPTION    'Windows 1 Example Application'
 STUB           'WINSTUB.EXE'
 CODE           MOVEABLE PRELOAD DISCARDABLE
